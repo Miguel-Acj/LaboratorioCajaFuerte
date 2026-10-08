@@ -3,6 +3,7 @@ public class CajaFuerte
     /**
      * Declaracion de los campos en private
      */
+
     private String numeroSerie;
     private String modelo;
     private int claveAcceso;
@@ -14,6 +15,7 @@ public class CajaFuerte
     /**
      * Declaracion del constructor
      */
+
     public CajaFuerte(String numeroSerie, String modelo,
                       int claveAcceso, double capacidadMaxima)
     {
@@ -28,6 +30,7 @@ public class CajaFuerte
     /**
      * Declaracion del metodo Abrir caja
      */
+
     public void abrir(int claveIngresada)
     {
         if(intentosFallidos >= 3)
@@ -59,6 +62,7 @@ public class CajaFuerte
     /**
      * Declaracion del metodo Cerrar caja fuerte
      */
+
     public void cerrar()
     {
         if(estado)
@@ -72,4 +76,70 @@ public class CajaFuerte
         }
     }
 
+
+    /**
+     * Operaciones con cantidades double
+     */
+
+    public void depositar(double cantidad)
+    {
+        if (!estado)
+        {
+            System.out.println("Primero abre la caja");
+            return;
+        }
+
+        if(cantidad <= 0 || saldoActual + cantidad > capacidadMaxima)
+        {
+            System.out.println("Depósito no permitido");
+            return;
+        }
+
+        saldoActual += cantidad;
+        System.out.println("Depósito realizado");
+    }
+
+    public void retirar(double cantidad)
+    {
+        if(!estado)
+        {
+            System.out.println("Primero abre la caja");
+            return;
+        }
+
+        if(cantidad <=0 || cantidad > saldoActual)
+        {
+            System.out.println("Retiro no permitido");
+            return;
+        }
+
+        saldoActual -= cantidad;
+        System.out.println("Retiro realizado");
+    }
+
+
+    public void mostrarEstado()
+    {
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Numero Serie: " + numeroSerie);
+        System.out.print("La caja esta: " );
+
+        if (estado)
+        {
+            System.out.println("abierta");
+        }else
+        {
+            System.out.println("cerrada");
+        }
+
+        System.out.println("Intentos fallidos: " + intentosFallidos);
+
+        if (estado)
+        {
+            System.out.println("Saldo: " + saldoActual);
+        }else
+        {
+            System.out.println("Saldo: información protegida");
+        }
+    }
 }
