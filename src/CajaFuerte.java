@@ -11,6 +11,8 @@ public class CajaFuerte
     private byte intentosFallidos;
     private double capacidadMaxima;
     private double saldoActual;
+    //Reto individual
+    private boolean alarmaActivada;
 
     /**
      * Declaracion del constructor
@@ -26,6 +28,8 @@ public class CajaFuerte
         estado = false; //la caja se encuentra serrada
         intentosFallidos = 0;
         saldoActual = 0.0;
+        //Reto individual
+        alarmaActivada = false;
   }
     /**
      * Declaracion del metodo Abrir caja
@@ -54,7 +58,9 @@ public class CajaFuerte
             if(intentosFallidos >= 3)
             {
             estado = false;
+            alarmaActivada = true;
             System.out.println("Caja fuerte bloqueada.");
+            System.out.println("Alarma Activada.");
             }
         }
     }
